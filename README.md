@@ -1,4 +1,4 @@
-# Automated-Shoplifting-Detection-in-Cashless-Stores-Using-CCTV-Video-Analysis
+# **Automated Shoplifting Detection in Cashless Stores Using CCTV Video Analysis**
 
 ## **Overview**
 This project implements an **AI-powered shoplifting detection system** using **CCTV video analysis**. It combines **deep learning-based classification** with **real-time person tracking** to identify potential shoplifting incidents in cashless stores. The system is built using **EfficientNetV2B0** for classification and **YOLOv8 with ByteTrack** for person tracking, deployed in a **Streamlit-based application**.
@@ -55,51 +55,44 @@ We use the **DCSASS dataset**, which is publicly available on Kaggle. This datas
 ---
 
 ## **Installation & Setup**
+
 ### **1️⃣ Clone the Repository**
 ```bash
-  git clone https://github.com/yourusername/Automated-Shoplifting-Detection.git
-  cd Automated-Shoplifting-Detection
+    git clone https://github.com/your-repo-url.git
+    cd your-repo-folder
 ```
 
-### **2️⃣ Install Dependencies**
+### **2️⃣ Activate Virtual Environment**
+#### **For Windows:**
 ```bash
-pip install -r requirements.txt
+    env\Scripts\activate
 ```
-
-### **3️⃣ Run the Streamlit Application**
+#### **For macOS/Linux:**
 ```bash
-streamlit run main.py
+    source env/bin/activate
+```
+
+### **3️⃣ Install Dependencies**
+```bash
+    pip install -r requirements.txt
+```
+
+### **4️⃣ Run the Streamlit Application**
+```bash
+    streamlit run main.py
 ```
 
 ---
 
-## **File Structure**
+## **Required Dependencies**
+Ensure the following dependencies are listed in **requirements.txt**:
+```txt
+inference-sdk
+numpy
+pandas
+opencv-python
+tensorflow==2.15.1
+supervision
+streamlit
 ```
-📂 Automated-Shoplifting-Detection
-│-- main.py  # Streamlit application
-│-- model.h5  # Trained EfficientNetV2B0 model
-│-- saving_annotate_video.py  # YOLOv8 tracking & EfficientNetV2B0 classification
-│-- shoplifting_classifier.py  # Shoplifting classification script
-│-- requirements.txt  # Required libraries
-│-- README.md  # Project documentation
-```
-
----
-
-## **Future Improvements**
-- Integrate **multi-object tracking** for enhanced tracking accuracy.
-- Implement **action recognition models** for better behavior understanding.
-- Optimize the **processing speed for real-time detection**.
-
----
-
-## **Contributors**
-- **Your Name** – *Developer & Researcher*
-- **Other Contributors** (if applicable)
-
-🔗 **GitHub Repository:** [Insert Repo Link Here]
-
-🚀 **Feel free to contribute and enhance the system!** 🎯
-
-
 
