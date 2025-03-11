@@ -7,6 +7,7 @@ st.title("ShopLifting Tracking and Detection")
 
 uploaded_file = st.file_uploader("Upload a video", type=["mp4"])
 
+
 def save_uploaded_file(uploaded_file):
     temp_dir = tempfile.gettempdir()
     file_path = os.path.join(temp_dir, uploaded_file.name)
@@ -36,4 +37,5 @@ if uploaded_file or st.session_state.button_pressed:
         x2=st.empty()
         with open('out.csv', "rb") as f:
             x2.download_button("Download CSV", f, file_name="data.csv", mime="text/csv")
-        st.session_state.button_pressed=False
+if uploaded_file and st.session_state.button_pressed:
+    st.session_state.button_pressed=False
