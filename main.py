@@ -5,6 +5,8 @@ from saving_annotate_video import saving_annotated_video
 
 st.title("ShopLifting Tracking and Detection")
 
+
+#File upload
 uploaded_file = st.file_uploader("Upload a video", type=["mp4"])
 
 
@@ -37,5 +39,4 @@ if uploaded_file or st.session_state.button_pressed:
         x2=st.empty()
         with open('out.csv', "rb") as f:
             x2.download_button("Download CSV", f, file_name="data.csv", mime="text/csv")
-if uploaded_file and st.session_state.button_pressed:
-    st.session_state.button_pressed=False
+
