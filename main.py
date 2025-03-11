@@ -36,3 +36,4 @@ if uploaded_file or st.session_state.button_pressed:
         x2=st.empty()
         with open('out.csv', "rb") as f:
             x2.download_button("Download CSV", f, file_name="data.csv", mime="text/csv")
+        st.session_state.button_pressed=False
