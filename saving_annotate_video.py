@@ -43,7 +43,7 @@ def saving_annotated_video(name,progress_bar):
                 out=output(frame[int(y1)+4:int(y2)+4,int(x1)+4:int(x2)+4])
 
 
-                if out==0:
+                if out==1:
                     csv['Time'].append((frame_num/total_frames)*duration)
                     csv['ID'].append(tracker_id)
                     target[tracker_id]='Shoplifting'
