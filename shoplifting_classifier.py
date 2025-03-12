@@ -16,12 +16,12 @@ import streamlit as st
 
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model("model.h5")
+    return tf.keras.models.load_model("shoplifting_model.h5")
 
 model = load_model()
 
 def output(image):
     inp=cv2.resize(image,(224,224))
     inp=inp.reshape(1,224,224,3)
-    out=np.argmax(model.predict(inp)[0])
-    return out
+    out=model.predict(inp)[0][0]
+    return int(out>0.4)
