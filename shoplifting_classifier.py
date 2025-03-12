@@ -24,4 +24,5 @@ def output(image):
     inp=cv2.resize(image,(224,224))
     inp=inp.reshape(1,224,224,3)
     out=model.predict(inp)[0][0]
-    return int(out>0.4)
+    print(out)
+    return int(out>0.5)
