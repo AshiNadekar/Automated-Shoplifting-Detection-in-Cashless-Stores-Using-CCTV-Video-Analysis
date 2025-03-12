@@ -41,7 +41,7 @@ def saving_annotated_video(name,progress_bar):
             for tracker_id, xyxy in zip(detections.tracker_id, detections.xyxy):
                 x1, y1, x2, y2 = xyxy
                 # out=output(frame[int(y1)+4:int(y2)+4,int(x1)+4:int(x2)+4])
-                out=frame
+                out=output(frame)
 
 
                 if out==1:
