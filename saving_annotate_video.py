@@ -4,6 +4,7 @@ from shoplifting_classifier import output
 import pandas as pd
 import os
 import streamlit as st
+from shoplifting_detection import classifier
 # from shoplifting_detection import output as ot
 CLIENT = InferenceHTTPClient(
     api_url="https://detect.roboflow.com",
@@ -42,9 +43,11 @@ def saving_annotated_video(name,progress_bar):
             for tracker_id, xyxy in zip(detections.tracker_id, detections.xyxy):
                 x1, y1, x2, y2 = xyxy
                 # out,prob=output(frame[int(y1)+4:int(y2)+4,int(x1)+4:int(x2)+4])
-                out,prob=output(frame)
+                out,prob=classifier(frame[int(y1)+4:int(y2)+4,int(x1)+4:int(x2)+4])
 
-                if out==0:
+                # out,prob=output(frame)
+
+                if out=="Shoplifting":
                     csv['Time'].append((frame_num/total_frames)*duration)
                     csv['ID'].append(tracker_id)
                     csv['prob'].append(prob)
