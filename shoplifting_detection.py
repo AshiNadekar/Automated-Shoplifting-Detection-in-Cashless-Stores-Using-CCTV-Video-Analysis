@@ -1,5 +1,6 @@
 from inference_sdk import InferenceHTTPClient
 import supervision as sv
+import streamlit as st
 CLIENT = InferenceHTTPClient(
     api_url="https://detect.roboflow.com",
     api_key=st.secrets["ROBOFLOW_API_KEY"]
