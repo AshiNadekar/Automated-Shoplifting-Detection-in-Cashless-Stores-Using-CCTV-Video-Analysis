@@ -27,7 +27,7 @@ def saving_annotated_video(name,progress_bar):
     annotator=sv.BoxAnnotator()
     label_annotator=sv.LabelAnnotator()
     
-    csv={'Time':[],'ID':[]}
+    csv={'Time':[],'ID':[],'prob':[]}
     with sv.VideoSink('out.mp4',video_info=info) as f:
         frame_num=0
         for frame in generator:
@@ -40,23 +40,24 @@ def saving_annotated_video(name,progress_bar):
             out=output(frame)
             for tracker_id, xyxy in zip(detections.tracker_id, detections.xyxy):
                 x1, y1, x2, y2 = xyxy
-                out=output(frame[int(y1)+4:int(y2)+4,int(x1)+4:int(x2)+4])
+                out,prob=output(frame[int(y1)+4:int(y2)+4,int(x1)+4:int(x2)+4])
                 # out=output(frame)
 
 
                 if out==1:
                     csv['Time'].append((frame_num/total_frames)*duration)
                     csv['ID'].append(tracker_id)
-                    target[tracker_id]='Shoplifting'
+                    csv['prob'].append(prob)
+                    target[tracker_id]=['Shoplifting',prob]
                 else:
-                    target[tracker_id]='Normal'
+                    target[tracker_id]=['Normal',1-prob]
             
 
             frame_num+=stride
 
             print(target)
             
-            labels = [f"#{tracker_id}/{target[tracker_id]}" for tracker_id in detections.tracker_id]
+            labels = [f"#{tracker_id}/{target[tracker_id][0]} {target[tracker_id][1]}%" for tracker_id in detections.tracker_id]
             
             annotated_image=annotator.annotate(scene=frame.copy(),detections=detections)
             annotated_image=label_annotator.annotate(scene=annotated_image.copy(),detections=detections,labels=labels)
