@@ -57,7 +57,7 @@ def saving_annotated_video(name,progress_bar):
 
             print(target)
             
-            labels = [f"#{tracker_id}/{target[tracker_id][0]} {round(target[tracker_id][1],2)*100}%" for tracker_id in detections.tracker_id]
+            labels = [f"#{tracker_id}/{target[tracker_id][0]} " for tracker_id in detections.tracker_id]
             
             annotated_image=annotator.annotate(scene=frame.copy(),detections=detections)
             annotated_image=label_annotator.annotate(scene=annotated_image.copy(),detections=detections,labels=labels)
