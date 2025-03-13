@@ -35,23 +35,26 @@ def encode_numpy_image(image_array):
 
 # Create chat request
 def classifier(image):
-    chat_completion = client.chat.completions.create(
-        messages=[
-            {
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": "Based on the given image classify with confidence"},
-                    {
-                        "type": "image_url",
-                        "image_url": {"url": f"data:image/jpeg;base64,{encode_numpy_image(image)}"},
-                    },
-                ],
-            },
-        ],
-        temperature=0,
-        model="llama-3.2-11b-vision-preview",
-        response_model=Classifier,
-    )
+    try:
+      chat_completion = client.chat.completions.create(
+          messages=[
+              {
+                  "role": "user",
+                  "content": [
+                      {"type": "text", "text": "Based on the given image classify with confidence"},
+                      {
+                          "type": "image_url",
+                          "image_url": {"url": f"data:image/jpeg;base64,{encode_numpy_image(image)}"},
+                      },
+                  ],
+              },
+          ],
+          temperature=0,
+          model="llama-3.2-11b-vision-preview",
+          response_model=Classifier,
+      )
+    except Exception as e:
+      return "Normal",0.5
     
     # Print the model's response
-    return chat_completion.Label,chat_completion.confidence
+    return chat_completion.Label,float(chat_completion.confidence)
