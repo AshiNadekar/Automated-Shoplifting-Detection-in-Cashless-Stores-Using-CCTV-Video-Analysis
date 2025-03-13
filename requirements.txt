@@ -6,3 +6,7 @@ tensorflow==2.15.0
 supervision
 python-dotenv
 streamlit
+instructor==1.3.7
+pydantic
+groq
+pillow
