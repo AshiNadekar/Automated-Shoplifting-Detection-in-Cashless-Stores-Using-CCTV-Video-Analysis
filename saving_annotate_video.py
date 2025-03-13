@@ -16,7 +16,7 @@ def extract_person_coordinate(img):
 def saving_annotated_video(name,progress_bar):
 
 
-    stride=2
+    stride=1
     smoother=sv.DetectionsSmoother()
     tracker=sv.ByteTrack()
     generator=sv.get_video_frames_generator(name,stride=stride)
