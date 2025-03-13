@@ -8,7 +8,7 @@ import base64
 import io
 from PIL import Image
 from groq import Groq
-
+import time
 # Set Groq API key
 class Classifier(BaseModel):
   Label:Literal["Shoplifting","Normal"]=Field(description="Label of the frame of boy standing")
@@ -55,6 +55,6 @@ def classifier(image):
       )
     except Exception as e:
       return "Normal",0.5
-    
+    time.sleep(1)
     # Print the model's response
-    return chat_completion.Label,float(chat_completion.confidence)
+    return chat_completion.Label,float(chat_completion.Confidence)
