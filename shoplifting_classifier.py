@@ -23,6 +23,6 @@ model = load_model()
 def output(image):
     inp=cv2.resize(image,(224,224))
     inp=inp.reshape(1,224,224,3)
-    out=model.predict(inp)[0][0]
+    prob=model.predict(inp)[0][0]
     print(out)
-    return int(out>0.5)
+    return int(prob>0.4),prob
