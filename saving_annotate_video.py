@@ -12,7 +12,7 @@ CLIENT = InferenceHTTPClient(
 )
 def extract_person_coordinate(img):
 
-    result = CLIENT.infer(img, model_id="person-detection-9a6mk/6")
+    result = CLIENT.infer(img, model_id="person-detection-9a6mk/16")
     return result
 
 def saving_annotated_video(name,progress_bar):
