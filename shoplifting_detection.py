@@ -32,7 +32,6 @@ def encode_numpy_image(image_array):
     buffered = io.BytesIO()
     image.save(buffered, format="JPEG")  # Save as JPEG (or PNG)
     return base64.b64encode(buffered.getvalue()).decode("utf-8")
-print(type(encode_numpy_image(image_array)))
 
 # Create chat request
 def classifier(image):
