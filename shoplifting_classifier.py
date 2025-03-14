@@ -25,4 +25,4 @@ def output(image):
     inp=inp.reshape(1,224,224,3)
     prob=model.predict(inp)[0][0]
     print(prob)
-    return int(prob>0.5),prob
+    return int(prob>0.45),prob
