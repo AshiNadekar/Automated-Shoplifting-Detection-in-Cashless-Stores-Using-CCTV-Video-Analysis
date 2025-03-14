@@ -40,7 +40,9 @@ def saving_annotated_video(name,progress_bar):
             detections=smoother.update_with_detections(detections)
             target={}
             out=output(frame)
-            for tracker_id, xyxy in zip(detections.tracker_id, detections.xyxy):
+            for tracker_id, xyxy, conf in zip(detections.tracker_id, detections.xyxy,detections.confidence):
+                if conf<0.5:
+                    continue
                 x1, y1, x2, y2 = xyxy
                 h, w, _ = frame.shape
                 out,prob=output(frame[max(0,int(y1)-10):min(h,int(y2)+10),max(0,int(x1)-10):min(w,int(x2)+10)])
