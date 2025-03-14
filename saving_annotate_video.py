@@ -42,7 +42,8 @@ def saving_annotated_video(name,progress_bar):
             out=output(frame)
             for tracker_id, xyxy in zip(detections.tracker_id, detections.xyxy):
                 x1, y1, x2, y2 = xyxy
-                out,prob=output(frame[int(y1)+4:int(y2)+4,int(x1)+4:int(x2)+4])
+                h, w, _ = frame.shape
+                out,prob=output(frame[max(0,int(y1)-10):min(h,int(y2)+10),max(0,int(x1)-10):min(w,int(x2)+10]))
                 # out,prob=classifier(frame[int(y1)+4:int(y2)+4,int(x1)+4:int(x2)+4])
 
                 # out,prob=output(frame)
